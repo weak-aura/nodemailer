@@ -26,13 +26,14 @@ app.use("/api/auth", authRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("connected to mongodb")
-    app.listen(PORT, () =>{
-      console.log(`server is running on port ${PORT}`)
-    })
+    console.log("Connected to database!");
+    app.listen(PORT, () => {
+      console.log("Server is running on port 3000");
+    });
   })
-  .then((error) =>{
-    console.log(`Error connection to mongodb: `)
-  })
+  .catch((error) => {
+    
+    console.log("Connection failed!", error);
+  });
 
 
