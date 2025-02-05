@@ -2,7 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const connectMongo = require("../config/database");
 
 const {authRoutes} = require("../routes/auth.route");
 
@@ -33,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI)
     })
   })
   .then((error) =>{
-    console.log(`Error connection to mongodb: `, error.message)
+    console.log(`Error connection to mongodb: `)
   })
 
 
