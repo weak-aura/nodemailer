@@ -15,11 +15,11 @@ const transporter = nodemailer.createTransport({
 });
 
 function saveVariable(key, value) {
-  return fs.writeFileSync(`./backend/fs-variables/${key}.json`, JSON.stringify(value))
+  return fs.writeFileSync(`./fs-variables/${key}.json`, JSON.stringify(value))
 }
 
 const readVariable = (key) => {
-  return JSON.parse(fs.readFileSync(`./backend/fs-variables/${key}.json`, "utf8"))
+  return JSON.parse(fs.readFileSync(`./fs-variables/${key}.json`, "utf8"))
 }
 
 
