@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const connectMongo = require("../config/database");
 
 const {authRoutes} = require("../routes/auth.route");
@@ -24,7 +25,15 @@ app.use(express.urlencoded({extended: true}))
 
 app.use("/api/auth", authRoutes);
 
-connectMongo();
-app.listen(PORT, () => {
-  console.log(`server is running on port: http://localhost:${PORT}`)
-})
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("connected to mongodb")
+    app.listen(PORT, () =>{
+      console.log(`server is running on port ${PORT}`)
+    })
+  })
+  .then((error) =>{
+    console.log(`Error connection to mongodb: `, error.message)
+  })
+
+
